@@ -2,3 +2,5 @@ flask
 streamlit
 pandas
 requests
+pyserial
+altair
