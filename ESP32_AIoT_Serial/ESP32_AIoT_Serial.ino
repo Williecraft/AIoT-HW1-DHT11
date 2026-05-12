@@ -35,6 +35,6 @@ void loop() {
   // 直接透過 Serial 輸出 JSON，交由 Python 橋接腳本去讀取這行並送給 API
   Serial.println(json);
   
-  // 延遲 5 秒後進行下一次測量
-  delay(5000);
+  // 延遲 2 秒後進行下一次測量
+  delay(2000);
 }

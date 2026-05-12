@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 
 API_URL = "http://localhost:5000/sensor"
+INTERVAL_SECONDS = 2
 
 def generate_sensor_data():
     return {
@@ -18,14 +19,16 @@ def generate_sensor_data():
 
 def main():
     print("Starting ESP32 Simulator...")
+    next_tick = time.monotonic()
     while True:
+        next_tick += INTERVAL_SECONDS
         data = generate_sensor_data()
         try:
-            response = requests.post(API_URL, json=data)
+            response = requests.post(API_URL, json=data, timeout=1.5)
             print(f"Sent: {data} -> Status: {response.status_code}")
         except Exception as e:
             print(f"Error sending data: {e}")
-        time.sleep(2)
+        time.sleep(max(0, next_tick - time.monotonic()))
 
 if __name__ == "__main__":
     main()

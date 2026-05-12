@@ -57,8 +57,8 @@ flowchart TD
     end
 
     %% Routing
-    A1 -- "HTTP POST JSON payload\nEndpoint: /sensor\n(每 5 秒)" --> B
-    A3 -- "HTTP POST JSON payload\nEndpoint: /sensor\n(每 5 秒隨機生成)" --> B
+    A1 -- "HTTP POST JSON payload\nEndpoint: /sensor\n(每 2 秒)" --> B
+    A3 -- "HTTP POST JSON payload\nEndpoint: /sensor\n(每 2 秒隨機生成)" --> B
     A2 -- "純文字輸出 (COM 埠)\n如: Humidity = 30%" --> Bridge
     Bridge -- "HTTP POST JSON payload\nEndpoint: /sensor\n(即時無縫轉發)" --> B
 
@@ -74,7 +74,7 @@ flowchart TD
 
 ### 1. 軟體模擬器 (`esp32_sim.py`) —— 開發初期的神兵利器
 在硬體尚未接線或沒有 ESP32 開發板的情況下，如何繼續開發前端儀表板？我們撰寫了官方模擬器：
-- **作法**：使用 Python 內建的 `random` 模組，每 5 秒隨機產生範圍在 $20.0 \sim 35.0^\circ\text{C}$ 的溫度、與 $45.0 \sim 75.0\%$ 的濕度，以及動態浮動的網路訊號強度 (RSSI)。
+- **作法**：使用 Python 內建的 `random` 模組，每 2 秒隨機產生範圍在 $20.0 \sim 35.0^\circ\text{C}$ 的溫度、與 $45.0 \sim 75.0\%$ 的濕度，以及動態浮動的網路訊號強度 (RSSI)。
 - **效益**：開發者能專注於 API 負載測試與前端圖表的動態渲染微調，不必等待真實硬體緩慢的採樣。
 
 ### 2. 真實 IoT 場景：有 WiFi 網路模式 (`ESP32_AIoT_Wifi.ino`)

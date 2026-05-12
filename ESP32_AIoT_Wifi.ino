@@ -86,6 +86,6 @@ void loop() {
     Serial.println("WiFi Disconnected");
   }
   
-  // 配合我們原先模擬器的頻率，每 5 秒上傳一次
-  delay(5000);
+  // 配合我們原先模擬器的頻率，每 2 秒上傳一次
+  delay(2000);
 }
